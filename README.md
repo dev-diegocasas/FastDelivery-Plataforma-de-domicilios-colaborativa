@@ -325,4 +325,4 @@ Abrir [http://localhost:3000](http://localhost:3000) en el navegador.
 
 ## 📝 Licencia
 
-Proyecto desarrollado con fines académicos y de presentación. **FastDelivery** &copy; 2025.
+Proyecto desarrollado con fines académicos y de presentación. **FastDelivery** &copy; 2026.
