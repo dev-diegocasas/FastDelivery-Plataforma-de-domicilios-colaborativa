@@ -1,0 +1,21 @@
+{
+  "name": "FastDelivery",
+  "short_name": "FastDelivery",
+  "description": "Plataforma de domicilios rápidos y seguros",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f9fb",
+  "theme_color": "#b3290f",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
