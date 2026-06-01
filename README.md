@@ -323,6 +323,99 @@ Abrir [http://localhost:3000](http://localhost:3000) en el navegador.
 
 ---
 
-## 📝 Licencia
+## 🎬 Guión de demostración técnica (para video)
+
+Guía rápida para explicar el código en una presentación. Orden sugerido: **DB → Middleware → Auth → Flujo de pedido → Admin → Repartidor → Email → Seguridad**.
+
+### ⏱️ 0:00 — Base de datos y estructura (30s)
+
+| Qué mostrar | Archivo exacto | Qué decir |
+|-------------|---------------|-----------|
+| Tablas + enums | `drizzle/schema.ts:22-26` | 3 roles: `cliente`, `admin`, `repartidor` |
+| Tabla `orders` (15 cols) | `drizzle/schema.ts:178-208` | `status` de 6 estados, `purchaseToken` para entrega |
+| Tabla `order_rejections` | `drizzle/schema.ts:343-359` | Repartidor rechaza sin afectar disponibilidad para otros |
+
+### ⏱️ 0:30 — Middleware de autorización (30s)
+
+| Qué mostrar | Archivo exacto | Qué decir |
+|-------------|---------------|-----------|
+| Guard por rol | `src/proxy.ts:26-32` | Edge middleware: si el path es `/admin` y no eres admin → redirect |
+| Mapa de rutas | `src/config/routes.ts:17-78` | Cada ruta tiene `roles: ["cliente"]` — el sidebar se filtra automáticamente |
+
+🔑 **Tecnologías:** Next.js Edge Middleware, NextAuth.js JWT
+
+### ⏱️ 1:00 — Autenticación con bcrypt (30s)
+
+| Qué mostrar | Archivo exacto | Qué decir |
+|-------------|---------------|-----------|
+| Credentials provider | `src/lib/auth/auth.ts:12-40` | `bcryptjs.compare()` valida password. Guard: `deletedAt` y `emailVerified` bloquean login |
+| JWT callback | `src/lib/auth/auth.config.ts:9-14` | Role se guarda en el JWT → lo usa el middleware + server actions |
+
+🔑 **Tecnologías:** bcryptjs, NextAuth.js v5, JWT strategy
+
+### ⏱️ 1:30 — Creación del pedido + notificaciones (45s)
+
+| Qué mostrar | Archivo exacto | Qué decir |
+|-------------|---------------|-----------|
+| `createOrder()` | `src/features/orders/orders.actions.ts:80-165` | Crea pedido en `RECIBIDO`, SIN pago. Notifica al ADMIN (antes notificaba al cliente — bug corregido) |
+| `payOrder()` — token | `src/features/orders/orders.actions.ts:180,189-196` | `crypto.randomUUID()` genera el token. Se guarda en `orders.purchaseToken` |
+| Notificación masiva | `src/features/orders/orders.actions.ts:223-241` | Recorre todos los repartidores y les inserta notificación individual |
+
+🔑 **Tecnologías:** Server Actions, Drizzle ORM, Zod, crypto.randomUUID
+
+### ⏱️ 2:15 — Admin: aceptar/rechazar (30s)
+
+| Qué mostrar | Archivo exacto | Qué decir |
+|-------------|---------------|-----------|
+| `acceptOrder()` | `src/features/menu/menu.actions.ts:333-376` | `RECIBIDO → ACEPTADO`. Notifica al cliente: "Ya puedes pagar" |
+| `rejectOrder()` | `src/features/menu/menu.actions.ts:378-421` | `RECIBIDO → CANCELADO`. Notifica al cliente |
+
+🔑 **Tecnologías:** Server Actions, validación de estado exacto (previene race conditions)
+
+### ⏱️ 2:45 — Repartidor: entrega + token (1 min)
+
+| Qué mostrar | Archivo exacto | Qué decir |
+|-------------|---------------|-----------|
+| `acceptDelivery()` + auto-bloqueo | `src/features/repartidor/repartidor.actions.ts:150-212` | `EN_PREPARACION → EN_CAMINO`. Asigna repartidor y pone `isAvailable = false` |
+| `updateDeliveryStatus()` + token | `src/features/repartidor/repartidor.actions.ts:281-362` | Valida que el token ingresado coincida con `order.purchaseToken`. Si es null (pedido antiguo), lo salta |
+| Auto-desbloqueo | `src/features/repartidor/repartidor.actions.ts:356-359` | Al entregar: `isAvailable = true` — puede tomar nuevos pedidos |
+
+🔑 **Tecnologías:** Server Actions, validación con token de compra, bloqueo/desbloqueo automático
+
+### ⏱️ 3:45 — Email con Nodemailer (30s)
+
+| Qué mostrar | Archivo exacto | Qué decir |
+|-------------|---------------|-----------|
+| Transport SMTP | `src/lib/email.ts:3-11` | Gmail SMTP con STARTTLS, credenciales vía `.env` |
+| Envío de verificación | `src/lib/email.ts:21-45` | Link con token: `/verificar-correo?token=xxx`. Siempre imprime en consola como fallback |
+
+🔑 **Tecnologías:** Nodemailer 7, Gmail SMTP
+
+### ⏱️ 4:15 — Eliminación de cuenta con limpieza (45s)
+
+| Qué mostrar | Archivo exacto | Qué decir |
+|-------------|---------------|-----------|
+| `deleteAccount()` — role cleanup | `src/features/auth/auth.actions.ts:182-248` | Admin: soft-delete restaurante + platos. Repartidor: hard-delete disponibilidad. Todos: hard-delete direcciones + notificaciones |
+| Anonimización + soft-delete | `src/features/auth/auth.actions.ts:230-244` | Email → `deleted-{uuid}@deleted.local`, password vacío, tokens limpiados, `deletedAt` = ahora |
+
+🔑 **Tecnologías:** bcryptjs (verificación previa), soft-delete pattern, Drizzle ORM
+
+---
+
+**Total estimado: ≈ 5 minutos.** Cada punto muestra el archivo exacto y la línea clave, sin desviarse en detalles secundarios.
+
+```
+Mapa rápido de archivos para el video:
+
+drizzle/schema.ts              → 0:00  Estructura BD
+src/proxy.ts                   → 0:30  Middleware
+src/config/routes.ts           → 0:30  Rutas por rol
+src/lib/auth/auth.ts           → 1:00  Auth + bcrypt
+src/features/orders/orders.actions.ts → 1:30  Pedido + pago + token
+src/features/menu/menu.actions.ts     → 2:15  Admin acepta/rechaza
+src/features/repartidor/repartidor.actions.ts → 2:45  Repartidor + token
+src/lib/email.ts               → 3:45  Email SMTP
+src/features/auth/auth.actions.ts    → 4:15  Eliminar cuenta
+```
 
 Proyecto desarrollado con fines académicos y de presentación. **FastDelivery** &copy; 2026.
