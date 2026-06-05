@@ -8,6 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   loading?: boolean;
+  fullWidth?: boolean;
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -24,8 +25,8 @@ const variantStyles: Record<ButtonVariant, string> = {
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: "h-8 px-3 text-label-md gap-1",
-  md: "h-10 px-4 text-title-lg gap-2",
+  sm: "h-8 sm:h-9 px-3 text-label-md gap-1",
+  md: "h-11 sm:h-10 px-4 text-title-lg gap-2",
   lg: "h-12 px-6 text-title-lg gap-2",
 };
 

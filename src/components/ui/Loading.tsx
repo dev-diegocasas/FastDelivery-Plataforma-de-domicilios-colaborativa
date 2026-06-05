@@ -41,14 +41,16 @@ export function Skeleton({ className }: { className?: string }) {
 export function CardSkeleton() {
   return (
     <div className="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
-      <Skeleton className="h-32 rounded-none" />
-      <div className="p-4 space-y-3">
-        <Skeleton className="h-5 w-3/4" />
-        <Skeleton className="h-3 w-1/2" />
-        <Skeleton className="h-4 w-full" />
-        <div className="flex gap-4">
-          <Skeleton className="h-4 w-20" />
-          <Skeleton className="h-4 w-16" />
+      <div className="flex sm:flex-col">
+        <Skeleton className="w-24 sm:w-full h-24 sm:h-32 rounded-none shrink-0" />
+        <div className="flex-1 p-3 sm:p-4 space-y-2 sm:space-y-3">
+          <Skeleton className="h-5 w-3/4" />
+          <Skeleton className="h-3 w-1/2" />
+          <Skeleton className="h-4 w-full hidden sm:block" />
+          <div className="flex gap-4">
+            <Skeleton className="h-4 w-20" />
+            <Skeleton className="h-4 w-16" />
+          </div>
         </div>
       </div>
     </div>

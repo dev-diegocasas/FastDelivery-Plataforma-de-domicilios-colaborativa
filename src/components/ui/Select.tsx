@@ -36,7 +36,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
             ref={ref}
             id={props.id}
             className={cn(
-              "w-full h-10 bg-transparent border rounded-lg font-body-md text-body-md appearance-none",
+              "w-full h-11 sm:h-10 bg-transparent border rounded-lg font-body-md text-body-md appearance-none",
               "focus:ring-0 focus:border-primary-container transition-all outline-none",
               error ? "border-error" : "border-outline-variant",
               icon ? "pl-10" : "pl-4",

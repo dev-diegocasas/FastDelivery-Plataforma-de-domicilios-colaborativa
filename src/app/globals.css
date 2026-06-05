@@ -72,6 +72,18 @@
   --spacing-unit: 4px;
   --spacing-margin-desktop: 32px;
   --spacing-gutter: 24px;
+
+  --spacing-safe-top: env(safe-area-inset-top, 0px);
+  --spacing-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --spacing-safe-left: env(safe-area-inset-left, 0px);
+  --spacing-safe-right: env(safe-area-inset-right, 0px);
+  --spacing-touch-target: 44px;
+
+  --text-responsive-display: clamp(1.75rem, 4vw, 2.5rem);
+  --text-responsive-headline: clamp(1.25rem, 3vw, 1.75rem);
+  --text-responsive-title: clamp(1rem, 2.5vw, 1.25rem);
+  --text-responsive-body: clamp(0.875rem, 2vw, 1rem);
+  --text-responsive-label: clamp(0.75rem, 1.5vw, 0.875rem);
 }
 
 :root {

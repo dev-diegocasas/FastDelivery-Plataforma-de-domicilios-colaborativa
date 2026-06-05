@@ -76,7 +76,7 @@ export default function NotificacionesPage() {
   if (loading) return <PageLoading />;
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
+    <div className="max-w-2xl mx-auto px-4 sm:px-0 space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-headline-lg font-bold text-on-surface font-headline-lg">

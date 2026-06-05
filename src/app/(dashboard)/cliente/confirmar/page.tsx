@@ -171,7 +171,7 @@ export default function ConfirmarPage() {
               setSelectedAddressId(null);
             }}
             placeholder="Dirección"
-            className="w-full h-10 px-4 bg-transparent border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-0 focus:border-primary-container transition-all outline-none"
+            className="w-full h-11 sm:h-10 px-4 bg-transparent border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-0 focus:border-primary-container transition-all outline-none"
           />
         </div>
       </div>

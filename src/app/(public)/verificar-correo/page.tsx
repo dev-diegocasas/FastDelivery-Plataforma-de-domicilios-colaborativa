@@ -49,7 +49,7 @@ function VerificarCorreoForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-surface px-4">
-      <div className="w-full max-w-[440px] text-center space-y-6">
+      <div className="w-full px-4 sm:px-0 sm:max-w-[440px] text-center space-y-6">
         {status === "loading" && (
           <>
             <div className="w-16 h-16 rounded-full bg-primary-container/20 flex items-center justify-center mx-auto">
@@ -80,7 +80,7 @@ function VerificarCorreoForm() {
             <button
               type="button"
               onClick={() => router.push("/login")}
-              className="inline-flex h-10 px-6 bg-primary-container text-on-primary font-title-lg rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all items-center gap-2"
+              className="inline-flex h-11 sm:h-10 px-6 bg-primary-container text-on-primary font-title-lg rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all items-center gap-2"
             >
               <span className="material-symbols-outlined text-[20px]">login</span>
               Iniciar sesión
@@ -101,7 +101,7 @@ function VerificarCorreoForm() {
             <p className="text-body-lg text-secondary font-body-lg">
               {message}
             </p>
-            <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 space-y-4 max-w-sm mx-auto">
+            <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 space-y-4 mx-4 sm:mx-auto sm:max-w-sm">
               <p className="text-body-md text-secondary font-body-md">
                 Ingresa tu correo para reenviar el enlace de verificación:
               </p>
@@ -110,13 +110,13 @@ function VerificarCorreoForm() {
                 value={resendEmail}
                 onChange={(e) => setResendEmail(e.target.value)}
                 placeholder="tu@correo.com"
-                className="w-full h-10 px-4 bg-transparent border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-0 focus:border-primary-container outline-none"
+                className="w-full h-11 sm:h-10 px-4 bg-transparent border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-0 focus:border-primary-container outline-none"
               />
               <button
                 type="button"
                 onClick={handleResend}
                 disabled={resending || !resendEmail}
-                className="w-full h-10 bg-primary-container text-on-primary font-title-lg rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full h-11 sm:h-10 bg-primary-container text-on-primary font-title-lg rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {resending ? "Enviando…" : "Reenviar correo"}
               </button>

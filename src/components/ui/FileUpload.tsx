@@ -53,7 +53,7 @@ export default function FileUpload({
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
         className={cn(
-          "relative flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-outline-variant rounded-xl cursor-pointer",
+          "relative flex flex-col items-center justify-center w-full h-28 sm:h-32 border-2 border-dashed border-outline-variant rounded-xl cursor-pointer",
           "hover:border-primary-container/50 hover:bg-surface-container-low transition-all",
           preview && "border-primary-container/50",
         )}

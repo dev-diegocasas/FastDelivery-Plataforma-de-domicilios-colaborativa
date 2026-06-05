@@ -37,7 +37,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             id={props.id}
             type={inputType}
             className={cn(
-              "w-full h-10 bg-transparent border rounded-lg font-body-md text-body-md",
+              "w-full h-11 sm:h-10 bg-transparent border rounded-lg font-body-md text-body-md",
               "focus:ring-0 focus:border-primary-container transition-all outline-none",
               error
                 ? "border-error"

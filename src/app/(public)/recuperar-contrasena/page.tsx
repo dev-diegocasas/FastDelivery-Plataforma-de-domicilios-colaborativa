@@ -73,7 +73,7 @@ function RecuperarContrasenaForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-surface px-4">
-      <div className="w-full max-w-[440px] space-y-8">
+      <div className="w-full px-4 sm:px-0 sm:max-w-[440px] space-y-6 sm:space-y-8">
         <div className="text-center space-y-2">
           <h1 className="text-display-md font-bold text-on-surface">
             {step === "email" && "Recuperar contraseña"}
@@ -91,7 +91,7 @@ function RecuperarContrasenaForm() {
         {step === "email" && (
           <form
             onSubmit={handleEmailSubmit}
-            className="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 space-y-6"
+            className="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 sm:p-8 space-y-6"
           >
             {error && (
               <div className="bg-error-container text-on-error-container rounded-lg p-3 text-sm font-body-md">
@@ -117,7 +117,7 @@ function RecuperarContrasenaForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="tu@correo.com"
-                  className="w-full h-10 pl-10 pr-4 bg-transparent border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-0 focus:border-primary-container transition-all outline-none"
+                  className="w-full h-11 sm:h-10 pl-10 pr-4 bg-transparent border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-0 focus:border-primary-container transition-all outline-none"
                 />
               </div>
             </div>
@@ -125,7 +125,7 @@ function RecuperarContrasenaForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full h-10 bg-primary-container text-on-primary font-title-lg rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full h-11 sm:h-10 bg-primary-container text-on-primary font-title-lg rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? "Enviando…" : "Enviar enlace"}
             </button>
@@ -145,7 +145,7 @@ function RecuperarContrasenaForm() {
         {step === "reset" && (
           <form
             onSubmit={handleResetSubmit}
-            className="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 space-y-6"
+            className="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 sm:p-8 space-y-6"
           >
             {error && (
               <div className="bg-error-container text-on-error-container rounded-lg p-3 text-sm font-body-md">
@@ -169,7 +169,7 @@ function RecuperarContrasenaForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Mínimo 6 caracteres"
-                  className="w-full h-10 pl-10 pr-12 bg-transparent border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-0 focus:border-primary-container transition-all outline-none"
+                  className="w-full h-11 sm:h-10 pl-10 pr-12 bg-transparent border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-0 focus:border-primary-container transition-all outline-none"
                 />
                 <button
                   type="button"
@@ -195,14 +195,14 @@ function RecuperarContrasenaForm() {
                 value={confirm}
                 onChange={(e) => setConfirm(e.target.value)}
                 placeholder="Repite la contraseña"
-                className="w-full h-10 px-4 bg-transparent border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-0 focus:border-primary-container transition-all outline-none"
+                className="w-full h-11 sm:h-10 px-4 bg-transparent border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-0 focus:border-primary-container transition-all outline-none"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full h-10 bg-primary-container text-on-primary font-title-lg rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full h-11 sm:h-10 bg-primary-container text-on-primary font-title-lg rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? "Guardando…" : "Guardar contraseña"}
             </button>
@@ -231,7 +231,7 @@ function RecuperarContrasenaForm() {
             <button
               type="button"
               onClick={() => router.push("/login")}
-              className="w-full h-10 bg-primary-container text-on-primary font-title-lg rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all"
+              className="w-full h-11 sm:h-10 bg-primary-container text-on-primary font-title-lg rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all"
             >
               Iniciar sesión
             </button>

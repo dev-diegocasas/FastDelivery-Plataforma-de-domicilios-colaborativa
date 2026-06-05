@@ -41,7 +41,7 @@ export default function DisponibilidadPage() {
   if (loading) return <PageLoading />;
 
   return (
-    <div className="max-w-md mx-auto space-y-6 text-center">
+    <div className="max-w-md mx-auto px-4 sm:px-0 space-y-6 text-center">
       <h1 className="text-headline-lg font-bold text-on-surface font-headline-lg">
         Disponibilidad
       </h1>

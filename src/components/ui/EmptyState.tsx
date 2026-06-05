@@ -26,14 +26,14 @@ export default function EmptyState({
         className,
       )}
     >
-      <span className="material-symbols-outlined text-[64px] text-secondary block mb-4">
+      <span className="material-symbols-outlined text-[48px] sm:text-[64px] text-secondary block mb-4">
         {icon}
       </span>
       <h3 className="text-headline-md text-on-surface font-headline-md font-semibold mb-2">
         {title}
       </h3>
       {message && (
-        <p className="text-body-md text-secondary font-body-md max-w-sm mb-6">
+        <p className="text-body-md text-secondary font-body-md max-w-sm px-4 sm:px-0 mb-6">
           {message}
         </p>
       )}

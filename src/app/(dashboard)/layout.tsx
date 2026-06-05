@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "@/components/layout/Topbar";
+import ResponsiveContainer from "@/components/ui/ResponsiveContainer";
 import { CartProvider } from "@/features/cart/cart.context";
 
 export default function DashboardLayout({
@@ -22,10 +23,8 @@ export default function DashboardLayout({
 
         <div className="flex-1 flex flex-col min-w-0">
           <Topbar onMenuClick={() => setSidebarOpen(true)} />
-          <main className="flex-1 px-4 lg:px-6 py-6 overflow-y-auto">
-            <div className="max-w-container-max-width mx-auto w-full">
-              {children}
-            </div>
+          <main className="flex-1 py-6 overflow-y-auto">
+            <ResponsiveContainer>{children}</ResponsiveContainer>
           </main>
         </div>
       </div>

@@ -122,14 +122,14 @@ export function DishCard({
 }) {
   return (
     <Card>
-      <div className="flex items-start gap-4 p-4">
-        <div className="w-20 h-20 rounded-lg bg-surface-variant shrink-0 flex items-center justify-center overflow-hidden">
-          <span className="material-symbols-outlined text-[32px] text-secondary">
+      <div className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4">
+        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg bg-surface-variant shrink-0 flex items-center justify-center overflow-hidden">
+          <span className="material-symbols-outlined text-[24px] sm:text-[32px] text-secondary">
             restaurant_menu
           </span>
         </div>
         <div className="flex-1 min-w-0">
-          <h4 className="text-title-lg text-on-surface font-title-lg">
+          <h4 className="text-body-md sm:text-title-lg text-on-surface font-title-lg">
             {dish.name}
           </h4>
           {dish.description && (
@@ -138,16 +138,17 @@ export function DishCard({
             </p>
           )}
           <div className="flex items-center justify-between mt-2">
-            <span className="font-title-lg text-primary font-title-lg">
+            <span className="text-title-lg text-primary font-title-lg">
               {formatCurrency(Number(dish.price))}
             </span>
             {onAdd && (
               <button
                 type="button"
                 onClick={onAdd}
-                className="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center hover:brightness-110 transition-all active:scale-90"
+                className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center hover:brightness-110 transition-all active:scale-90"
+                aria-label="Agregar plato"
               >
-                <span className="material-symbols-outlined text-[18px]">
+                <span className="material-symbols-outlined text-[20px] sm:text-[18px]">
                   add
                 </span>
               </button>
@@ -173,9 +174,9 @@ export function OrderCard({
   return (
     <Card hoverable onClick={onClick}>
       <div className="p-4 space-y-3">
-        <div className="flex items-start justify-between">
-          <div>
-            <h4 className="text-title-lg text-on-surface font-title-lg">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+          <div className="min-w-0 flex-1">
+            <h4 className="text-title-lg text-on-surface font-title-lg truncate">
               {restaurantName ?? "Restaurante"}
             </h4>
             <p className="text-body-sm text-secondary font-body-sm mt-0.5">

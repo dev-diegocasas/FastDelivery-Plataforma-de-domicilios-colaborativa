@@ -128,7 +128,7 @@ export default function Topbar({ onMenuClick }: TopbarProps) {
               className="fixed inset-0 z-40"
               onClick={() => setNotifOpen(false)}
             />
-            <div className="absolute right-0 top-full mt-2 w-80 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-lg z-50 overflow-hidden">
+            <div className="fixed sm:absolute left-4 right-4 sm:left-auto sm:right-0 top-16 sm:top-full sm:mt-2 sm:w-80 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-lg z-50 overflow-hidden">
               <div className="p-4 border-b border-outline-variant">
                 <p className="font-title-lg text-title-lg text-on-surface">
                   Notificaciones
@@ -242,7 +242,7 @@ export default function Topbar({ onMenuClick }: TopbarProps) {
               className="fixed inset-0 z-40"
               onClick={() => setProfileOpen(false)}
             />
-            <div className="absolute right-0 top-full mt-2 w-56 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-lg z-50 overflow-hidden">
+            <div className="fixed sm:absolute left-4 right-4 sm:left-auto sm:right-0 top-16 sm:top-full sm:mt-2 sm:w-56 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-lg z-50 overflow-hidden">
               <div className="px-4 py-3 border-b border-outline-variant">
                 <p className="text-body-md font-semibold text-on-surface font-body-md">
                   {session?.user?.name}

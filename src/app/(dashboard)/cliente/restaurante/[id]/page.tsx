@@ -71,7 +71,7 @@ export default function RestauranteDetailPage() {
   return (
     <div className="space-y-6 max-w-3xl">
       {/* Hero */}
-      <div className="bg-gradient-to-br from-primary-container/40 to-secondary-container/40 rounded-xl h-48 flex items-end p-6">
+      <div className="bg-gradient-to-br from-primary-container/40 to-secondary-container/40 rounded-xl h-36 sm:h-48 flex items-end p-4 sm:p-6">
         <div>
           <h1 className="text-display-md font-bold text-on-primary-container font-display-md">
             {restaurant.name}

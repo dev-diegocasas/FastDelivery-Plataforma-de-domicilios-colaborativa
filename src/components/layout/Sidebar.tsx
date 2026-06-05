@@ -21,16 +21,20 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   return (
     <>
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/30 z-30 lg:hidden"
-          onClick={onClose}
-        />
-      )}
+      {/* Overlay backdrop */}
+      <div
+        className={cn(
+          "fixed inset-0 bg-black/30 z-30 lg:hidden transition-opacity duration-300",
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none",
+        )}
+        onClick={onClose}
+        aria-hidden="true"
+      />
 
       <aside
         className={cn(
-          "fixed lg:static inset-y-0 left-0 z-40 w-sidebar-width bg-surface-container-lowest border-r border-outline-variant flex flex-col transition-transform duration-300 lg:translate-x-0",
+          "fixed lg:static inset-y-0 left-0 z-40 w-sidebar-width bg-surface-container-lowest border-r border-outline-variant flex flex-col transition-transform duration-300 ease-out lg:translate-x-0",
+          "pt-[env(safe-area-inset-top,0px)]",
           isOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >

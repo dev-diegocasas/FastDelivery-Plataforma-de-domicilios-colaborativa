@@ -17,7 +17,7 @@ const sizeStyles = {
   sm: "max-w-sm",
   md: "max-w-md",
   lg: "max-w-lg",
-  full: "max-w-full mx-4 lg:max-w-2xl",
+  full: "max-w-full mx-2 sm:mx-4 lg:max-w-2xl",
 };
 
 export default function Modal({
@@ -49,19 +49,23 @@ export default function Modal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4">
       <div
         className="fixed inset-0 bg-black/40 backdrop-blur-sm"
         onClick={onClose}
       />
       <div
         className={cn(
-          "relative w-full bg-surface-container-lowest border border-outline-variant rounded-xl shadow-xl",
-          "animate-in fade-in zoom-in-95 duration-200",
+          "relative w-full bg-surface-container-lowest border border-outline-variant shadow-xl",
+          "rounded-t-2xl sm:rounded-xl",
+          "max-h-[85vh] overflow-y-auto",
+          "animate-in slide-in-from-bottom sm:zoom-in-95 sm:slide-in-from-bottom-0 fade-in duration-200",
           sizeStyles[size],
         )}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-outline-variant">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-outline-variant">
+          {/* Mobile drag handle */}
+          <span className="absolute top-2 left-1/2 -translate-x-1/2 w-10 h-1 bg-outline-variant rounded-full sm:hidden" />
           <h2 className="text-title-lg text-on-surface font-title-lg font-semibold">
             {title}
           </h2>
@@ -73,11 +77,11 @@ export default function Modal({
             <span className="material-symbols-outlined text-[20px]">close</span>
           </button>
         </div>
-        <div className="px-6 py-4 max-h-[60vh] overflow-y-auto">
+        <div className="px-4 sm:px-6 py-4 overflow-y-auto">
           {children}
         </div>
         {footer && (
-          <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-outline-variant bg-surface-container-low/50 rounded-b-xl">
+          <div className="flex items-center justify-end gap-3 px-4 sm:px-6 py-4 border-t border-outline-variant bg-surface-container-low/50 rounded-b-xl">
             {footer}
           </div>
         )}

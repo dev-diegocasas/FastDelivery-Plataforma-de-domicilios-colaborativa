@@ -144,8 +144,8 @@ export default function AdminPanelPage() {
       </div>
 
       {/* Quick actions */}
-      <div className="grid grid-cols-2 gap-4">
-        <Button variant="outline" className="h-20 flex-col" onClick={() => router.push("/admin/menu")}>
+      <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
+        <Button variant="outline" className="h-16 sm:h-20 flex-col" onClick={() => router.push("/admin/menu")}>
           <span className="material-symbols-outlined text-[24px]">restaurant_menu</span>
           Gestionar menú
         </Button>
