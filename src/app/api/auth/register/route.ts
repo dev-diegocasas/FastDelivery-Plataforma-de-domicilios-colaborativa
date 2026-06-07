@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     const token = crypto.randomUUID();
     const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
-    const [user] = await db
+    await db
       .insert(users)
       .values({
         name: data.name,
@@ -54,7 +54,8 @@ export async function POST(request: Request) {
         role: users.role,
       });
 
-    await sendVerificationEmail(data.email, data.name, token);
+    // Email no bloqueante — el registro exitoso no depende del envio
+    sendVerificationEmail(data.email, data.name, token).catch(() => {});
 
     return NextResponse.json(
       {
